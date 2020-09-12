@@ -4,13 +4,14 @@ class Suppository{
   int posY;
   PImage sup;
   float scale;
+  int sup_pos;
   
-  Suppository(int sup_posX, int sup_posY, float scaleinit) {
+  Suppository(int sup_posX, int sup_posY, float sup_scaleinit) {
   posX = sup_posX;
   posY = sup_posY;
   sup = new PImage();
   sup = loadImage("img/sup.png");
-  scale = scaleinit;
+  scale = sup_scaleinit;
   }
   
   void display(){
@@ -21,7 +22,7 @@ class Suppository{
     image(sup, posX, posY);
     pop();
     
-    posX = posX - 10;
+    posX = posX - sup_pos;
     
   }
 };

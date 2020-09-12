@@ -24,11 +24,8 @@ class Suppository{
     image(sup, posX, posY);
     pop();
     
-<<<<<<< HEAD
-    posX = posX - 12;
-=======
+
     posX = posX - sup_vel;
->>>>>>> a8b0bcbefea41c26c892052048549091313595fc
     
   }
 };

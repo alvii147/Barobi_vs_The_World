@@ -21,7 +21,7 @@ class Money {
     image(money, posX, posY);
     pop();
     
-    posX = posX - sup_vel;
+    posX = posX - 12;
     
   }
 };

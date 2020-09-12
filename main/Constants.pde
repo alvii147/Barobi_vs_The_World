@@ -5,9 +5,9 @@ class Constants{
   int zaf_posX = width;
   int zaf_posY = height - 200;
   float scaleinit = 0.2;
-  int sup_posX = ;
-  int sup_posY = ;
-  float sup_scaleinit = ;
+  int sup_posX = 600;
+  int sup_posY = 400;
+  float sup_scaleinit = 0.3;
   
   Constants() {
      

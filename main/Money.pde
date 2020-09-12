@@ -23,7 +23,9 @@ class Money {
     image(money, posX, posY);
     pop();
     
-    posX = posX - money_vel;
-    
+    if(posX > -50)
+    {
+      posX = posX - money_vel;
+    }
   }
 };

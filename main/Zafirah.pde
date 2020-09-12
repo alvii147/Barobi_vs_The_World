@@ -23,7 +23,9 @@ class Zafirah {
     image(zaf, posX, posY);
     pop();
     
-    posX = posX - zaf_vel;
-    
+    if(posX > -50)
+    {
+      posX = posX - zaf_vel;
+    }
   }
 };

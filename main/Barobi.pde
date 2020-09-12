@@ -4,9 +4,9 @@ class Barobi
   int posY;
   int initposX;
   int initposY;
-  int jumpvel;
-  int velY;
-  int acc;
+  float jumpvel;
+  float velY;
+  float acc;
   PImage[] imgs;
   int frame;
   float scale;
@@ -17,9 +17,9 @@ class Barobi
     posY = posYinit;
     initposX = posXinit;
     initposY = posYinit;
-    jumpvel = 25;
-    velY = 0;
-    acc = -1;
+    jumpvel = 12.0;
+    velY = 0.0;
+    acc = -0.4;
     imgs = new PImage[4];
     imgs[0] = loadImage("img/barobi_run_1.png");
     imgs[1] = loadImage("img/barobi_run_2.png");

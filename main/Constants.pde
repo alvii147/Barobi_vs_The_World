@@ -19,6 +19,10 @@ class Constants
   float MONEY_SCALE = 0.15;
   int MONEY_INIT_VEL = 3;
   
+  int SCOREBOARD_INIT_POS_X = width - 150;
+  int SCOREBOARD_INIT_POS_Y = 60;
+  
+  
   Constants()
   {
      

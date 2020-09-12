@@ -13,6 +13,7 @@ Background myBackground;
 Suppository mySuppository;
 Zafirah myZafirah;
 Money myMoney;
+Scoreboard myScoreboard;
 
 int zaf_col;
 int mon_col;
@@ -44,6 +45,7 @@ void setup()
   mySuppository = new Suppository(myConstants.SUP_INIT_POS_X, myConstants.SUP_INIT_POS_Y, myConstants.SUP_SCALE, myConstants.SUP_INIT_VEL);
   myZafirah = new Zafirah(myConstants.ZAF_INIT_POS_X, myConstants.ZAF_INIT_POS_Y, myConstants.ZAF_SCALE, myConstants.ZAF_INIT_VEL);
   myMoney = new Money(myConstants.MONEY_INIT_POS_X, myConstants.MONEY_INIT_POS_Y, myConstants.MONEY_SCALE, myConstants.MONEY_INIT_VEL);
+  myScoreboard = new Scoreboard(myConstants.SCOREBOARD_INIT_POS_X, myConstants.SCOREBOARD_INIT_POS_Y);
 }
 
 void draw()
@@ -56,6 +58,7 @@ void draw()
   mySuppository.display();
   myZafirah.display();
   myMoney.display();
+  myScoreboard.write(Score);
   
   if(BarobiTimer > 10)
   {

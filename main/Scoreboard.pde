@@ -10,7 +10,7 @@ class Scoreboard {
   
   void write(int score){
   String s = str(score);
-  textSize(30);
+  textSize(60);
   fill(0, 0, 255);
   text(s, score_posX, score_posY);
   }

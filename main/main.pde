@@ -6,9 +6,10 @@ int BarobiTimer;
 Barobi myBarobi;
 Background myBackground;
 Suppository mySuppository;
+Zafirah myZafirah;
 
 void setup()
-{
+{ 
   size(1280, 720);
   
   BAROBI_INIT_POS_X = 100;
@@ -19,6 +20,7 @@ void setup()
   myBarobi = new Barobi(BAROBI_INIT_POS_X, BAROBI_INIT_POS_Y, BAROBI_INIT_SCALE);
   myBackground = new Background(1);
   mySuppository = new Suppository(width, height - 300, 0.3);
+  myZafirah = new Zafirah(width, 200, 0.2);
 }
 
 void draw()
@@ -27,6 +29,7 @@ void draw()
   myBackground.display();
   myBarobi.display();
   mySuppository.display();
+  myZafirah.display();
   if(BarobiTimer > 10)
   {
     myBarobi.incrementFrame();
@@ -35,6 +38,10 @@ void draw()
   if(mySuppository.posX < -20)
   {
     mySuppository.posX = width;
+  }
+  if(myZafirah.posX < -20)
+  {
+    myZafirah.posX = width;
   }
   BarobiTimer++;
 }

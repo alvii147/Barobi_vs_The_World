@@ -47,7 +47,6 @@ class Barobi
     translate(posX, posY);
     scale(scale);
     imageMode(CENTER);
-    println(posY, velY);
     image(imgs[frame], posX, posY);
     pop();
   }
@@ -59,6 +58,9 @@ class Barobi
   
   void jump()
   {
-    velY = jumpvel;
+    if(posY == initposY)
+    {
+      velY = jumpvel;
+    }
   }
 };

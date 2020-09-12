@@ -17,7 +17,7 @@ class Barobi
     posY = posYinit;
     initposX = posXinit;
     initposY = posYinit;
-    jumpvel = 23;
+    jumpvel = 25;
     velY = 0;
     acc = -1;
     imgs = new PImage[4];

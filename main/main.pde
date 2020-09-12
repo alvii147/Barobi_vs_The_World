@@ -1,6 +1,4 @@
-int BAROBI_INIT_POS_X;
-int BAROBI_INIT_POS_Y;
-float BAROBI_INIT_SCALE;
+Constants myConstants;
 
 int BarobiTimer;
 Barobi myBarobi;
@@ -17,16 +15,12 @@ float magnitude(int x1, int y1, int x2, int y2)
 void setup()
 { 
   size(1280, 720);
-  
-  BAROBI_INIT_POS_X = 100;
-  BAROBI_INIT_POS_Y = height - 300;
-  BAROBI_INIT_SCALE = 0.3;
-  
+  myConstants = new Constants();
   BarobiTimer = 0;
-  myBarobi = new Barobi(BAROBI_INIT_POS_X, BAROBI_INIT_POS_Y, BAROBI_INIT_SCALE);
+  myBarobi = new Barobi(myConstants.BAROBI_INIT_POS_X, myConstants.BAROBI_INIT_POS_Y, myConstants.BAROBI_SCALE);
   myBackground = new Background(1);
-  mySuppository = new Suppository(width, height - 250, 0.15);
-  myZafirah = new Zafirah(width, 200, 0.3);
+  mySuppository = new Suppository(myConstants.SUP_INIT_POS_X, myConstants.SUP_INIT_POS_Y, myConstants.SUP_SCALE, myConstants.SUP_INIT_VEL);
+  myZafirah = new Zafirah(myConstants.ZAF_INIT_POS_X, myConstants.ZAF_INIT_POS_Y, myConstants.ZAF_SCALE, myConstants.ZAF_INIT_VEL);
 }
 
 void draw()
@@ -43,11 +37,11 @@ void draw()
   }
   if(mySuppository.posX < -20)
   {
-    mySuppository.posX = width;
+    mySuppository.posX = myConstants.SUP_INIT_POS_X;
   }
   if(myZafirah.posX < -20)
   {
-    myZafirah.posX = width;
+    myZafirah.posX = myConstants.ZAF_INIT_POS_X;
   }
   BarobiTimer++;
   

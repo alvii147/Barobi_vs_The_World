@@ -1,5 +1,9 @@
 Constants myConstants;
 
+int Score;
+
+float mag;
+
 int BarobiTimer;
 int ObstacleTimer;
 int SpeedTimer;
@@ -10,10 +14,14 @@ Suppository mySuppository;
 Zafirah myZafirah;
 Money myMoney;
 
+int zaf_col;
+int mon_col;
+int sup_col;
+
 float magnitude(int x1, int y1, int x2, int y2)
 {
-  float mag = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
-  return mag;
+  float mag_val = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+  return mag_val;
 }
 
 void setup()
@@ -21,9 +29,15 @@ void setup()
   size(1280, 720);
   myConstants = new Constants();
   
+  mag = 0;
+  
   BarobiTimer = 0;
   ObstacleTimer = 0;
   SpeedTimer = 0;
+  
+  zaf_col = 0;
+  mon_col = 0;
+  sup_col = 0;
   
   myBarobi = new Barobi(myConstants.BAROBI_INIT_POS_X, myConstants.BAROBI_INIT_POS_Y, myConstants.BAROBI_SCALE);
   myBackground = new Background(1);
@@ -38,6 +52,7 @@ void draw()
   
   myBackground.display();
   myBarobi.display();
+  
   mySuppository.display();
   myZafirah.display();
   myMoney.display();
@@ -52,36 +67,55 @@ void draw()
   if(myZafirah.posX <= -50 && ObstacleTimer > 100)
   {
     myZafirah.posX = myConstants.ZAF_INIT_POS_X;
+    zaf_col = 0;
   }
   else if(mySuppository.posX <= -50 && ObstacleTimer > 200)
   {
     mySuppository.posX = myConstants.SUP_INIT_POS_X;
+    sup_col = 0;
   }
   else if(myMoney.posX <= -50 && ObstacleTimer > 300)
   {
     myMoney.posX = myConstants.MONEY_INIT_POS_X;
+    mon_col = 0;
     ObstacleTimer = 0;
   }
   ObstacleTimer++;
   
-  if(SpeedTimer > 50)
+  int rand = int(random(0, 3));
+  if(SpeedTimer > 40)
   {
-    myZafirah.zaf_vel += 0.2;
-    myMoney.money_vel += 0.3;
-    mySuppository.sup_vel += 0.6;
+    if(rand == 0)
+    {
+      myZafirah.zaf_vel++;
+    }
+    else if(rand == 1)
+    {
+      myMoney.money_vel++;
+    }
+    else
+    {
+      mySuppository.sup_vel++;
+    }
     SpeedTimer = 0;
   }
   SpeedTimer++;
   
-  float mag = magnitude(myBarobi.posX, myBarobi.posY, myZafirah.posX, myZafirah.posY);
-  if(mag < 100)
+  mag = magnitude(myBarobi.posX, myBarobi.posY, myZafirah.posX, myZafirah.posY);
+  if(mag < 30 && zaf_col == 0)
   {
-    println("COLLISION");
+    Score += 100;
+    zaf_col = 1;
   }
-  else
+  
+  mag = magnitude(myBarobi.posX, myBarobi.posY, myMoney.posX, myMoney.posY);
+  if(mag < 40 && mon_col == 0)
   {
-    println("");
+    Score += 50;
+    mon_col = 1;
   }
+  
+  println(Score);
 }
 
 void keyReleased()

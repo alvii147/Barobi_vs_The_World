@@ -17,7 +17,7 @@ class Background
   void display()
   {
     image(img, posX, posY);
-    posX -= 5;
+    posX -= 12;
     if(posX < -width)
     {
       posX = 0;

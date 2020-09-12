@@ -14,6 +14,11 @@ class Constants
   float SUP_SCALE = 0.15;
   int SUP_INIT_VEL = 8;
   
+  int MONEY_INIT_POS_X = width;
+  int MONEY_INIT_POS_Y = 300;
+  float MONEY_SCALE = 0.15;
+  int MONEY_INIT_VEL = 12;
+  
   Constants()
   {
      

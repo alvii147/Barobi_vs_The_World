@@ -5,6 +5,7 @@ Barobi myBarobi;
 Background myBackground;
 Suppository mySuppository;
 Zafirah myZafirah;
+Money myMoney;
 
 float magnitude(int x1, int y1, int x2, int y2)
 {
@@ -21,15 +22,19 @@ void setup()
   myBackground = new Background(1);
   mySuppository = new Suppository(myConstants.SUP_INIT_POS_X, myConstants.SUP_INIT_POS_Y, myConstants.SUP_SCALE, myConstants.SUP_INIT_VEL);
   myZafirah = new Zafirah(myConstants.ZAF_INIT_POS_X, myConstants.ZAF_INIT_POS_Y, myConstants.ZAF_SCALE, myConstants.ZAF_INIT_VEL);
+  myMoney = new Money(myConstants.MONEY_INIT_POS_X, myConstants.MONEY_INIT_POS_Y, myConstants.MONEY_SCALE, myConstants.MONEY_INIT_VEL);
 }
 
 void draw()
 {
   background(130, 35, 12);
+  
   myBackground.display();
   myBarobi.display();
   mySuppository.display();
   myZafirah.display();
+  myMoney.display();
+  
   if(BarobiTimer > 10)
   {
     myBarobi.incrementFrame();
@@ -43,6 +48,11 @@ void draw()
   {
     myZafirah.posX = myConstants.ZAF_INIT_POS_X;
   }
+  if(myMoney.posX < -20)
+  {
+    myMoney.posX = myConstants.MONEY_INIT_POS_X;
+  }
+  
   BarobiTimer++;
   
   float mag = magnitude(myBarobi.posX, myBarobi.posY, myZafirah.posX, myZafirah.posY);

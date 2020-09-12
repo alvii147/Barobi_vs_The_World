@@ -4,13 +4,15 @@ class Money {
   int posY;
   PImage money;
   float scale;
+  int money_vel;
   
-  Money(int money_posX, int money_posY, float money_scaleinit){
+  Money(int money_posX, int money_posY, float money_scaleinit, int money_initvel){
   posX = money_posX;
   posY = money_posY;
   money = new PImage();
   money = loadImage("img/money.png");
   scale = money_scaleinit;
+  money_vel = money_initvel;
   }
   
   void display(){
@@ -21,7 +23,7 @@ class Money {
     image(money, posX, posY);
     pop();
     
-    posX = posX - 12;
+    posX = posX - money_vel;
     
   }
 };

@@ -22,6 +22,7 @@ class Barobi
   void display()
   {
     push();
+    translate(posX, posY);
     scale(scale);
     imageMode(CENTER);
     image(imgs[frame], posX, posY);

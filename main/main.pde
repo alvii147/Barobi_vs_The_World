@@ -4,20 +4,25 @@ float BAROBI_INIT_SCALE;
 
 int BarobiTimer;
 Barobi myBarobi;
+Background myBackground;
 
 void setup()
 {
-  size(800, 800);
-  int BAROBI_INIT_POS_X = 200;
-  int BAROBI_INIT_POS_Y = height - 200;
-  float BAROBI_INIT_SCALE = 0.5;
+  size(1280, 720);
+  
+  BAROBI_INIT_POS_X = 400;
+  BAROBI_INIT_POS_Y = 1700;
+  BAROBI_INIT_SCALE = 0.3;
+  
   BarobiTimer = 0;
   myBarobi = new Barobi(BAROBI_INIT_POS_X, BAROBI_INIT_POS_Y, BAROBI_INIT_SCALE);
+  myBackground = new Background(1);
 }
 
 void draw()
 {
   background(130, 35, 12);
+  myBackground.display();
   myBarobi.display();
   if(BarobiTimer > 10)
   {

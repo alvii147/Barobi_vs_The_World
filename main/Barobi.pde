@@ -2,6 +2,11 @@ class Barobi
 {
   int posX;
   int posY;
+  int initposX;
+  int initposY;
+  int jumpvel;
+  int velY;
+  int acc;
   PImage[] imgs;
   int frame;
   float scale;
@@ -10,6 +15,11 @@ class Barobi
   {
     posX = posXinit;
     posY = posYinit;
+    initposX = posXinit;
+    initposY = posYinit;
+    jumpvel = 23;
+    velY = 0;
+    acc = -1;
     imgs = new PImage[4];
     imgs[0] = loadImage("img/barobi_run_1.png");
     imgs[1] = loadImage("img/barobi_run_2.png");
@@ -22,9 +32,22 @@ class Barobi
   void display()
   {
     push();
+    
+    posY -= velY;
+    if(posY > initposY)
+    {
+      posY = initposY;
+      velY = 0;
+    }
+    else
+    {
+      velY += acc;
+    }
+    
     translate(posX, posY);
     scale(scale);
     imageMode(CENTER);
+    println(posY, velY);
     image(imgs[frame], posX, posY);
     pop();
   }
@@ -32,5 +55,10 @@ class Barobi
   void incrementFrame()
   {
     frame = (frame + 1) % 4;
+  }
+  
+  void jump()
+  {
+    velY = jumpvel;
   }
 };

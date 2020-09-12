@@ -38,3 +38,11 @@ void draw()
   }
   BarobiTimer++;
 }
+
+void keyReleased()
+{
+  if(key == ' ')
+  {
+    myBarobi.jump();
+  }
+}

@@ -6,7 +6,7 @@ class Constants
   
   int ZAF_INIT_POS_X = width;
   int ZAF_INIT_POS_Y = 230;
-  float ZAF_SCALE = 0.18;
+  float ZAF_SCALE = 0.25;
   int ZAF_INIT_VEL = 1;
   
   int SUP_INIT_POS_X = width;

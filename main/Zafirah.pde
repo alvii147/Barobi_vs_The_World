@@ -5,6 +5,7 @@ class Zafirah {
   PImage zaf;
   float scale;
   int zaf_vel;
+  int dis = 0;
 
   Zafirah (int zaf_posX, int zaf_posY, float scaleinit, int zafvelinit) {
   posX = zaf_posX;
@@ -13,6 +14,7 @@ class Zafirah {
   zaf = loadImage("img/zafirah.png");
   scale = scaleinit;
   zaf_vel = zafvelinit;
+  dis = 1;
   }
   
   void display(){
@@ -20,7 +22,10 @@ class Zafirah {
     translate(posX, posY);
     scale(scale);
     imageMode(CENTER);
-    image(zaf, posX, posY);
+    if(dis == 1)
+    {
+      image(zaf, posX, posY);
+    }
     pop();
     
     if(posX > -50)

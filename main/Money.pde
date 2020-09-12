@@ -5,6 +5,7 @@ class Money {
   PImage money;
   float scale;
   int money_vel;
+  int dis;
   
   Money(int money_posX, int money_posY, float money_scaleinit, int money_initvel){
   posX = money_posX;
@@ -13,6 +14,7 @@ class Money {
   money = loadImage("img/money.png");
   scale = money_scaleinit;
   money_vel = money_initvel;
+  dis = 1;
   }
   
   void display(){
@@ -20,7 +22,10 @@ class Money {
     translate(posX, posY);
     scale(scale);
     imageMode(CENTER);
-    image(money, posX, posY);
+    if(dis == 1)
+    {
+      image(money, posX, posY);
+    }
     pop();
     
     if(posX > -50)

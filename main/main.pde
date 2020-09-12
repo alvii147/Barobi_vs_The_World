@@ -17,7 +17,6 @@ Scoreboard myScoreboard;
 
 int zaf_col;
 int mon_col;
-int sup_col;
 
 float magnitude(int x1, int y1, int x2, int y2)
 {
@@ -38,7 +37,6 @@ void setup()
   
   zaf_col = 0;
   mon_col = 0;
-  sup_col = 0;
   
   myBarobi = new Barobi(myConstants.BAROBI_INIT_POS_X, myConstants.BAROBI_INIT_POS_Y, myConstants.BAROBI_SCALE);
   myBackground = new Background(1);
@@ -71,16 +69,17 @@ void draw()
   {
     myZafirah.posX = myConstants.ZAF_INIT_POS_X;
     zaf_col = 0;
+    myZafirah.dis = 1;
   }
   else if(mySuppository.posX <= -50 && ObstacleTimer > 200)
   {
     mySuppository.posX = myConstants.SUP_INIT_POS_X;
-    sup_col = 0;
   }
   else if(myMoney.posX <= -50 && ObstacleTimer > 300)
   {
     myMoney.posX = myConstants.MONEY_INIT_POS_X;
     mon_col = 0;
+    myMoney.dis = 1;
     ObstacleTimer = 0;
   }
   ObstacleTimer++;
@@ -105,20 +104,26 @@ void draw()
   SpeedTimer++;
   
   mag = magnitude(myBarobi.posX, myBarobi.posY, myZafirah.posX, myZafirah.posY);
-  if(mag < 30 && zaf_col == 0)
+  if(mag < 60 && zaf_col == 0)
   {
     Score += 100;
     zaf_col = 1;
+    myZafirah.dis = 0;
   }
   
   mag = magnitude(myBarobi.posX, myBarobi.posY, myMoney.posX, myMoney.posY);
-  if(mag < 40 && mon_col == 0)
+  if(mag < 60 && mon_col == 0)
   {
     Score += 50;
     mon_col = 1;
+    myMoney.dis = 0;
   }
   
-  println(Score);
+  mag = magnitude(myBarobi.posX, myBarobi.posY, mySuppository.posX, mySuppository.posY);
+  if(mag < 100)
+  {
+    println("Game Over");
+  }
 }
 
 void keyReleased()

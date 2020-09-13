@@ -1,5 +1,8 @@
 Constants myConstants;
 
+int state;
+PImage titleimg;
+PImage disappointed;
 int Score;
 
 float mag;
@@ -7,6 +10,8 @@ float mag;
 int BarobiTimer;
 int ObstacleTimer;
 int SpeedTimer;
+
+Button myButton;
 
 Barobi myBarobi;
 Background myBackground;
@@ -29,6 +34,9 @@ void setup()
   size(1280, 720);
   myConstants = new Constants();
   
+  state = 0;
+  titleimg = loadImage("img/title.png");
+  disappointed = loadImage("img/disappointed.jpg");
   mag = 0;
   
   BarobiTimer = 0;
@@ -37,6 +45,8 @@ void setup()
   
   zaf_col = 0;
   mon_col = 0;
+  
+  myButton = new Button(width/2, height/2 + 100);
   
   myBarobi = new Barobi(myConstants.BAROBI_INIT_POS_X, myConstants.BAROBI_INIT_POS_Y, myConstants.BAROBI_SCALE);
   myBackground = new Background(1);
@@ -48,88 +58,115 @@ void setup()
 
 void draw()
 {
-  background(130, 35, 12);
-  
-  myBackground.display();
-  myBarobi.display();
-  
-  mySuppository.display();
-  myZafirah.display();
-  myMoney.display();
-  myScoreboard.write(Score);
-  
-  if(BarobiTimer > 10)
+  background(255, 255, 255);
+  if(state == 0)
   {
-    myBarobi.incrementFrame();
-    BarobiTimer = 0;
+    push();
+    scale(1.3);
+    image(titleimg, 0, 0);
+    pop();
   }
-  BarobiTimer++;
-  
-  if(myZafirah.posX <= -50 && ObstacleTimer > 100)
+  else if(state == 1)
   {
-    myZafirah.posX = myConstants.ZAF_INIT_POS_X;
-    zaf_col = 0;
-    myZafirah.dis = 1;
-  }
-  else if(mySuppository.posX <= -50 && ObstacleTimer > 200)
-  {
-    mySuppository.posX = myConstants.SUP_INIT_POS_X;
-  }
-  else if(myMoney.posX <= -50 && ObstacleTimer > 300)
-  {
-    myMoney.posX = myConstants.MONEY_INIT_POS_X;
-    mon_col = 0;
-    myMoney.dis = 1;
-    ObstacleTimer = 0;
-  }
-  ObstacleTimer++;
-  
-  int rand = int(random(0, 3));
-  if(SpeedTimer > 40)
-  {
-    if(rand == 0)
+    myBackground.display();
+    myBarobi.display();
+    
+    mySuppository.display();
+    myZafirah.display();
+    myMoney.display();
+    myScoreboard.write(Score);
+    
+    if(BarobiTimer > 10)
     {
-      myZafirah.zaf_vel++;
+      myBarobi.incrementFrame();
+      BarobiTimer = 0;
     }
-    else if(rand == 1)
+    BarobiTimer++;
+    
+    if(myZafirah.posX <= -50 && ObstacleTimer > 100)
     {
-      myMoney.money_vel++;
+      myZafirah.posX = myConstants.ZAF_INIT_POS_X;
+      zaf_col = 0;
+      myZafirah.dis = 1;
     }
-    else
+    else if(mySuppository.posX <= -50 && ObstacleTimer > 200)
     {
-      mySuppository.sup_vel++;
+      mySuppository.posX = myConstants.SUP_INIT_POS_X;
     }
-    SpeedTimer = 0;
+    else if(myMoney.posX <= -50 && ObstacleTimer > 300)
+    {
+      myMoney.posX = myConstants.MONEY_INIT_POS_X;
+      mon_col = 0;
+      myMoney.dis = 1;
+      ObstacleTimer = 0;
+    }
+    ObstacleTimer++;
+    
+    int rand = int(random(0, 3));
+    if(SpeedTimer > 40)
+    {
+      if(rand == 0)
+      {
+        myZafirah.zaf_vel++;
+      }
+      else if(rand == 1)
+      {
+        myMoney.money_vel++;
+      }
+      else
+      {
+        mySuppository.sup_vel++;
+      }
+      SpeedTimer = 0;
+    }
+    SpeedTimer++;
+    
+    mag = magnitude(myBarobi.posX, myBarobi.posY, myZafirah.posX, myZafirah.posY);
+    if(mag < 60 && zaf_col == 0)
+    {
+      Score += 100;
+      zaf_col = 1;
+      myZafirah.dis = 0;
+    }
+    
+    mag = magnitude(myBarobi.posX, myBarobi.posY, myMoney.posX, myMoney.posY);
+    if(mag < 60 && mon_col == 0)
+    {
+      Score += 50;
+      mon_col = 1;
+      myMoney.dis = 0;
+    }
+    
+    mag = magnitude(myBarobi.posX, myBarobi.posY, mySuppository.posX, mySuppository.posY);
+    if(mag < 100)
+    {
+      state = 2;
+    }
   }
-  SpeedTimer++;
-  
-  mag = magnitude(myBarobi.posX, myBarobi.posY, myZafirah.posX, myZafirah.posY);
-  if(mag < 60 && zaf_col == 0)
+  else if(state == 2)
   {
-    Score += 100;
-    zaf_col = 1;
-    myZafirah.dis = 0;
-  }
-  
-  mag = magnitude(myBarobi.posX, myBarobi.posY, myMoney.posX, myMoney.posY);
-  if(mag < 60 && mon_col == 0)
-  {
-    Score += 50;
-    mon_col = 1;
-    myMoney.dis = 0;
-  }
-  
-  mag = magnitude(myBarobi.posX, myBarobi.posY, mySuppository.posX, mySuppository.posY);
-  if(mag < 100)
-  {
-    println("Game Over");
+    push();
+    translate(width/2, height/2);
+    scale(2.5);
+    imageMode(CENTER);
+    image(disappointed, 0, 0);
+    pop();
+    String s = "Dishonour on your whole family\nDishonour on you\nDishonour on your cow\nYour Score: " + str(Score);
+    myButton.write(s);
   }
 }
 
 void keyReleased()
 {
-  if(key == ' ')
+  if(state == 0)
   {
-    myBarobi.jump();
+    state = 1;
+  }
+  else if(state == 1)
+  {
+    if(key == ' ')
+    {
+      myBarobi.jump();
+    }
   }
 }

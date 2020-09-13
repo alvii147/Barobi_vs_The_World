@@ -9,9 +9,9 @@ class Button {
   }
   
   void write(String s){
-  textMode(CENTER);
-  textSize(60);
-  fill(0, 255, 0);
+  textAlign(CENTER);
+  textSize(40);
+  fill(0, 0, 0);
   text(s, button_posX, button_posY);
   }
 };
